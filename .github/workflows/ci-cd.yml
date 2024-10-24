@@ -1,0 +1,26 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build and push image
+      run: |
+        docker build -t starwars-microservice:latest .
+        docker tag starwars-microservice:latest ${{ secrets.DOCKER_USERNAME }}/starwars-microservice:latest
+        docker push ${{ secrets.DOCKER_USERNAME }}/starwars-microservice:latest
+
+    - name: Deploy to Kubernetes
+      uses: kubernetes/deploy-action@v1
+      with:
+        cluster: ${{ secrets.KUBECONFIG }}
+        deployment: starwars-microservice
+        image: ${{ secrets.DOCKER_USERNAME }}/starwars-microservice:latest
