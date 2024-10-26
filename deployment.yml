@@ -1,20 +1,23 @@
-# deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: swapi-microservice
+  name: swapy-deploy
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: swapi-microservice
+      app: swapy-test
   template:
     metadata:
       labels:
-        app: swapi-microservice
+        app: swapy-test
     spec:
       containers:
-      - name: swapi-microservice
-        image: pr2-prv1/swapi-microservice:latest
+      - name: endpoint-app
+        image: osacar93/swapy-test:latest
         ports:
-        - containerPort: 5000
+        - containerPort: 80
+  service:
+    type: NodePort
+    port: 80
+    targetPort: 80

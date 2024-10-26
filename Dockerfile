@@ -16,6 +16,9 @@ COPY requirements.txt .
 # Instalamos las dependencias definidas en requirements.txt
 RUN pip install -r requirements.txt
 
+#Instalar curl en el contenedor
+RUN apt-get update && apt-get install -y curl
+
 # Copiamos el código de la aplicación en el contenedor
 COPY . .
 
