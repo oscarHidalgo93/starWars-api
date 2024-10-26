@@ -1,5 +1,5 @@
 # app.py
-from flask import Flask, jsonify, redirect, url_for
+from flask import Flask, render_template, jsonify
 from flask.logging import create_logger
 import requests
 
@@ -25,7 +25,7 @@ def get_people():
 
 @app.route('/', methods=['GET'])
 def index():
-    return jsonify({'message': 'Bienvenido a la API de Star Wars. Para obtener la lista de personas, accede a /people'})
+    return render_template('index.html')
 
 @app.route('/people', methods=['GET'])
 def people():
