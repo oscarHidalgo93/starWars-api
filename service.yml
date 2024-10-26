@@ -1,10 +1,11 @@
+# service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: starwars-microservice
+  name: swapi-microservice
 spec:
   selector:
-    app: starwars-microservice
+    app: swapi-microservice
   ports:
   - name: http
     port: 80
