@@ -1,9 +1,23 @@
-import requests
+from locust import HttpLocust, TaskSet, task
 
-def test_performance():
-    url = 'http://starwars-microservice:80/people'
-    response = requests.get(url)
-    assert response.status_code == 200
+class UserBehavior(TaskSet):
+    def on_start(self):
+        """ on_start is called when a Locust starts """
+        self.login()
 
-if __name__ == '__main__':
-    test_performance()
+    def login(self):
+        # No es necesario iniciar sesión en esta aplicación
+        pass
+
+    @task
+    def index(self):
+        self.client.get("/")
+
+    @task
+    def people(self):
+        self.client.get("/people")
+
+class WebsiteUser(HttpLocust):
+    task_set = UserBehavior
+    min_wait = 2000
+    max_wait = 5000
