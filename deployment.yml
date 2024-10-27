@@ -16,6 +16,4 @@ spec:
       - name: endpoint-app
         image: osacar93/swapy-test:latest
         ports:
-        - containerPort: 5000
-        command: ["curl", "-v", "http://$(kubectl get svc swapy-service -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'):5000"]
-
+        - containerPort: 80
