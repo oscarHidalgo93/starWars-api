@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: endpoint-app
-        image: osacar93/swapy-test:latest
+        image: osacar93/prueba_final:latest
         ports:
         - containerPort: 80
