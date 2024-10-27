@@ -17,11 +17,7 @@ jobs:
           # Ejecutar test de performance para Python
           # (opcional, puedes comentar esta sección si no lo necesitas)
           #pip install locust
-          #locust -f tests/performance_test.py --headless --num_users=10 --hatch_rate=1
-      - name: Instalar Podman
-        run: |
-          # Actualizar la versión de Podman
-          sudo apt-get update && sudo apt-get install -y podman
+          #locust -f tests/performance_test.py --headless --num_users=10 --hatch_rate=1      
       - name: Desplegar en Minikube
         run: |
           # Instalar Minikube
