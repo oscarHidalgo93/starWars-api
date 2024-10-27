@@ -35,5 +35,5 @@ jobs:
           kubectl get deployments
 
           # Dashboard de minikube
-          minikube dashboard --url
-          
+            echo "URL del servicio: $(minikube service swapy-deploy --url)"
+
