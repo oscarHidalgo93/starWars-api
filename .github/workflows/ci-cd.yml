@@ -18,7 +18,11 @@ jobs:
           # Ejecutar test de performance para Python
           # (opcional, puedes comentar esta sección si no lo necesitas)
           #pip install locust
-          #locust -f tests/performance_test.py --headless --num_users=10 --hatch_rate=1      
+          #locust -f tests/performance_test.py --headless --num_users=10 --hatch_rate=1 
+      - name: Verificar conexion a swapy.dev
+        run: |
+          # verificar conexion con curl
+          curl https://swapi.dev                 
       - name: Desplegar en Minikube
         run: |
           # Instalar Minikube
@@ -28,6 +32,7 @@ jobs:
 
           # Iniciar Minikube
           minikube start --driver=docker --v=5
+
 
           # Desplegar en Minikube
           kubectl apply -f deployment.yml
