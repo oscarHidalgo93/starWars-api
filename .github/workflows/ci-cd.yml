@@ -32,8 +32,11 @@ jobs:
           kubectl apply -f deployment.yml
           kubectl rollout status deployment/swapy-deploy
           kubectl get pods
-          
+
           # Verificar el estado del deployment
           kubectl get deployments
+
+          # Consultar logs de un pod
+          kubectl logs -f $(kubectl get pods -o jsonpath='{.items[0].metadata.name}')
 
 
