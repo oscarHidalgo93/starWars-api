@@ -34,6 +34,7 @@ jobs:
           # Verificar el estado del deployment
           kubectl get deployments
 
-          # Dashboard de minikube
-            echo "URL del servicio: $(minikube service swapy-deploy --url)"
+          # Listar services
+            minikube service list
+            minikube service swapy-deploy -n default
 
