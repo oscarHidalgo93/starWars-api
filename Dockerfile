@@ -25,6 +25,11 @@ COPY . .
 # Exponemos el puerto 5000 para que la aplicación sea accesible desde fuera del contenedor
 EXPOSE 5000
 
-# Definimos el comando para ejecutar la aplicación cuando se inicie el contenedor
-CMD ["flask", "run", "--host=0.0.0.0"]
+# Crear un script que ejecute la aplicación y haga un cat del fichero people.json
+RUN echo "python app.py && cat people.json" > run.sh
 
+# Dar permisos de ejecución al script
+RUN chmod +x run.sh
+
+# Comando para ejecutar el script
+CMD ["bash", "run.sh"]

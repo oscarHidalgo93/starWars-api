@@ -1,10 +1,5 @@
-# app.py
-from flask import Flask, render_template, jsonify
-from flask.logging import create_logger
 import requests
-
-app = Flask(__name__)
-logger = create_logger(app)
+import json
 
 SWAPI_URL = 'https://swapi.dev/api/people/'
 
@@ -17,20 +12,16 @@ def get_people():
         people.sort(key=lambda x: x['name'])
         return people
     except requests.exceptions.RequestException as e:
-        logger.error(f'Error al obtener personas: {e}')
+        print(f'Error al obtener personas: {e}')
         return []
     except ValueError as e:
-        logger.error(f'Error al parsear JSON: {e}')
+        print(f'Error al parsear JSON: {e}')
         return []
 
-@app.route('/', methods=['GET'])
-def index():
-    return render_template('index.html')
-
-@app.route('/people', methods=['GET'])
-def people():
+def main():
     people = get_people()
-    return jsonify(people)
+    with open('people.json', 'w') as f:
+        json.dump(people, f)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    main()
