@@ -1,13 +1,12 @@
-# service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: swapi-microservice
+  name: swapy-service
 spec:
-  selector:
-    app: swapi-microservice
+  type: NodePort
   ports:
-  - name: http
-    port: 80
-    targetPort: 5000
-  type: LoadBalancer
+  - port: 80
+    targetPort: 80
+  selector:
+    app: swapy-test
+
