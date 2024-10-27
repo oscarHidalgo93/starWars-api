@@ -37,7 +37,7 @@ jobs:
           # Verificar el estado del deployment
           kubectl get deployments
 
-          # Consultar logs de un pod
+          # Consultar logs de un pod para sacar json de /people
           kubectl logs -f $(kubectl get pods -o jsonpath='{.items[0].metadata.name}')
 
 
