@@ -35,4 +35,5 @@ jobs:
           kubectl get deployments
 
           # Dashboard de minikube
-          minikube dashboard
+          minikube dashboard --url
+          
