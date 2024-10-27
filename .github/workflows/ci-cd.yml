@@ -30,7 +30,7 @@ jobs:
           sudo mv minikube /usr/local/bin/
 
           # Iniciar Minikube
-          minikube start
+          minikube start --driver=docker
 
           # Desplegar en Minikube
           kubectl apply -f deployment.yml
