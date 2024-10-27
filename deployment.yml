@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: swapy-deploy
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: swapy-test
@@ -16,4 +16,18 @@ spec:
       - name: endpoint-app
         image: osacar93/prueba_final:latest
         ports:
-        - containerPort: 80
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
+        volumeMounts:
+        - name: data-volume
+          mountPath: /app/data
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: data-pvc
