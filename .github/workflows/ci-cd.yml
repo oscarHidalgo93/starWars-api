@@ -30,11 +30,10 @@ jobs:
 
           # Desplegar en Minikube
           kubectl apply -f deployment.yml
-
+          kubectl rollout status deployment/swapy-deploy
+          kubectl get pods
+          
           # Verificar el estado del deployment
           kubectl get deployments
 
-          # Listar services
-            minikube service list
-            minikube service swapy-deploy -n default
 
