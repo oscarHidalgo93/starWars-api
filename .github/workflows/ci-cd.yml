@@ -33,3 +33,6 @@ jobs:
 
           # Verificar el estado del deployment
           kubectl get deployments
+
+          # Dashboard de minikube
+          minikube dashboard
