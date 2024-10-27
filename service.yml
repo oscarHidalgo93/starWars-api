@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: swapy-service
 spec:
-  type: NodePort
-  ports:
-  - port: 80
-    targetPort: 80
   selector:
     app: swapy-test
-
+  ports:
+  - name: http
+    port: 5000
+    targetPort: 5000
+  type: LoadBalancer
