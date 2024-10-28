@@ -13,12 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Test de performance (opcional)
-        run: |
-          # Ejecutar test de performance para Python
-          # (opcional, puedes comentar esta sección si no lo necesitas)
-          #pip install locust
-          #locust -f tests/performance_test.py --headless --num_users=10 --hatch_rate=1 
       - name: Verificar conexion a swapy.dev
         run: |
           # verificar conexion con curl
@@ -60,6 +54,12 @@ jobs:
           kubectl exec -it $(kubectl get pods -o jsonpath='{.items[0].metadata.name}') -- cat people.json
 
         
-          
+      - name: Test de performance (opcional)
+        run: |
+          # Ejecutar test de performance para Python
+          # (opcional, puedes comentar esta sección si no lo necesitas)
+
+          kubectl exec -it $(kubectl get pods -o jsonpath='{.items[0].metadata.name}') -- pip install locust
+          kubectl exec -it $(kubectl get pods -o jsonpath='{.items[0].metadata.name}') --locust -f performance_test.py  --headless --host="http://localhost:5000" --run-time=10s
 
 
