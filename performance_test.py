@@ -20,4 +20,4 @@ class WebsiteUser(HttpUser):
     max_wait = 0
     users = 1
     spawn_rate = 1
-    run_time = 1  # tiempo de ejecución de la prueba en segundos
+    run_time = 1  # tiempo de ejecución de la prueba en segundos 
