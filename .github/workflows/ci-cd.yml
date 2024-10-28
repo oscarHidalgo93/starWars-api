@@ -44,17 +44,16 @@ jobs:
           #kubectl apply -f data-pvc.yaml
 
           kubectl rollout status deployment/swapy-deploy
-          kubectl get pods
 
           # Verificar el estado del deployment
           kubectl get deployments
 
-          # Consultar logs de un pod para sacar json de /people 
-          kubectl logs $(kubectl get pods -o jsonpath='{.items[0].metadata.name}')
-
       - name: Listar pods disponibles
         run: |
-          kubectl get pods
+          kubectl get pods 
+
+          # Consultar logs de un pod para sacar json de /people 
+          kubectl logs $(kubectl get pods -o jsonpath='{.items[0].metadata.name}')
 
       - name: Obtener nombre del contenedor
         run: |
