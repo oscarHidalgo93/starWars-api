@@ -29,8 +29,7 @@ spec:
           mountPath: /app/data
       volumes:
       - name: data-volume
-        persistentVolumeClaim:
-          claimName: data-pvc
+        emptyDir: {}
   strategy:    
     type: RollingUpdate
     rollingUpdate:
