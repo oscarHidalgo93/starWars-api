@@ -1,3 +1,5 @@
+from flask import Flask, render_template, jsonify
+from flask.logging import create_logger
 import requests
 import json
 
@@ -18,10 +20,25 @@ def get_people():
         print(f'Error al parsear JSON: {e}')
         return []
 
-def main():
+def generate_people_json():
     people = get_people()
     with open('people.json', 'w') as f:
         json.dump(people, f)
 
+generate_people_json()
+
+app = Flask(__name__)
+logger = create_logger(app)
+
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('index.html')
+
+@app.route('/people', methods=['GET'])
+def people():
+    with open('people.json', 'r') as f:
+        people = json.load(f)
+    return jsonify(people)
+
 if __name__ == '__main__':
-    main()
+    app.run(debug=True)
