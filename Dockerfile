@@ -26,7 +26,7 @@ COPY . .
 EXPOSE 5000
 
 # Crear un script que ejecute la aplicación y haga un cat del fichero people.json
-RUN echo "python app.py && cat people.json" > run.sh
+RUN echo "python app.py && cat people.json && sleep 500" > run.sh
 
 # Dar permisos de ejecución al script
 RUN chmod +x run.sh
