@@ -16,7 +16,7 @@ jobs:
       - name: Verificar conexion a swapy.dev
         run: |
           # verificar conexion con curl
-          curl https://swapi.dev    
+          curl -X GET https://swapi.dev    
           
       - name: Verificar contenido del directorio actual
         run: |
