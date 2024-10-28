@@ -58,8 +58,6 @@ jobs:
         run: |
           # Ejecutar test de performance para Python
           # (opcional, puedes comentar esta sección si no lo necesitas)
-
-          kubectl exec -it $(kubectl get pods -o jsonpath='{.items[0].metadata.name}') -- pip update locust
-          kubectl exec -it $(kubectl get pods -o jsonpath='{.items[0].metadata.name}') -- locust -f performance_test.py  --headless --host="http://localhost:5000" --run-time=10s
+          kubectl exec $(kubectl get pods -o jsonpath='{.items[0].metadata.name}') -- locust -f performance_test.py  --headless --host="http://localhost:5000" --run-time=10s
 
 
