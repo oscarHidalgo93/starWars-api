@@ -22,7 +22,12 @@ jobs:
       - name: Verificar conexion a swapy.dev
         run: |
           # verificar conexion con curl
-          curl https://swapi.dev                 
+          curl https://swapi.dev    
+          
+      - name: Verificar contenido del directorio actual
+        run: |
+          ls -l    
+                
       - name: Desplegar en Minikube
         run: |
           # Instalar Minikube
@@ -32,11 +37,6 @@ jobs:
 
           # Iniciar Minikube
           minikube start --driver=docker --v=5
-
-          #comprobar directorio actual 
-          pwd
-          ls -l
-
 
           # Desplegar en Minikube
           kubectl apply -f deployment.yml
