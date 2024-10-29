@@ -16,7 +16,7 @@ jobs:
       - name: Verificar conexion a swapy.dev
         run: |
           # verificar conexion con curl
-          curl -X GET https://swapi.dev    
+          curl -X GET https://swapi.dev/people   
           
       - name: Verificar contenido del directorio actual
         run: |
@@ -51,7 +51,6 @@ jobs:
 
       - name: Verificar contenido de people.json
         run: |
-          kubectl exec $(kubectl get pods -o jsonpath='{.items[0].metadata.name}') -- python3 app.py
           kubectl exec $(kubectl get pods -o jsonpath='{.items[0].metadata.name}') -- cat people.json
 
         
