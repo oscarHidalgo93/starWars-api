@@ -5,6 +5,7 @@ import json
 
 SWAPI_URL = 'https://swapi.dev/api/people/'
 
+
 def get_people():
     try:
         response = requests.get(SWAPI_URL)
