@@ -3,7 +3,7 @@ from flask.logging import create_logger
 import requests
 import json
 
-SWAPI_URL = 'https://swapi.dev/api/people/ '
+SWAPI_URL = 'https://swapi.dev/api/people/'
 
 def get_people():
     try:
